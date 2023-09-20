@@ -10,13 +10,50 @@
     <div class="container">
           <div class="card">
             <h1>Quotes of the day</h1>
-            <h4>lorem100 </h4>
-            <p>Mahatama gandhi</p>
+            <div class="show">
+                <h4 class="quoteOfTheDayIs">lorem100 </h4>
+                <p class="author">Mahatama gandhi</p>
+            </div>
           </div> 
           <div class="quote">
-            <button>New Quotes</button>
-            <button>Tweet</button>
+            <button class="btn">New Quotes</button>
+            <button><img src="./tweeter.png" alt="">Tweet</button>
           </div>
     </div>
 </body>
+<script>
+    const quote=document.querySelector('.btn')
+    const api_url='https://api.quotable.io/random'
+    const quoteOfTheDayIs=document.querySelector('.quoteOfTheDayIs')
+    const author=document.querySelector('.author')
+    let data={}
+    
+    // getQuotes(api_url)
+
+    quote.addEventListener('click',generateQuote)
+
+    function generateQuote(e){
+       getQuotes(api_url)
+        
+       
+        
+       
+            
+        
+        
+    }
+    async function getQuotes(url){
+        try{
+            const response=await fetch(url)
+         data=await response.json();
+         document.querySelector('.show').style.display='block'
+        quoteOfTheDayIs.innerHTML=data.content
+        author.innerHTML=data.author
+        }catch(error){
+            alert(error)
+        }
+        
+
+    }
+</script>
 </html>
